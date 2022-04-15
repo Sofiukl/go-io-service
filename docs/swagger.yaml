@@ -1,0 +1,53 @@
+basePath: /
+definitions:
+  models.GenericResponse:
+    properties:
+      details:
+        type: string
+      error:
+        type: boolean
+      message:
+        type: string
+      result:
+        type: object
+    type: object
+host: localhost:8082
+info:
+  contact: {}
+  description: Serice for io operations
+  title: io Service API Documentation (Golang)
+  version: "1.0"
+paths:
+  /io/api/v1/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: This api will be used to upload file
+      parameters:
+      - description: File to be uploaded
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GenericResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.GenericResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.GenericResponse'
+      summary: Uploaded file
+      tags:
+      - file-upload
+schemes:
+- http
+- https
+swagger: "2.0"
